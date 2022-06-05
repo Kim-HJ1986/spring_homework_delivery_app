@@ -5,6 +5,7 @@ import com.homework.homework_delivery_app.model.Menu;
 import com.homework.homework_delivery_app.model.Restaurant;
 import com.homework.homework_delivery_app.repository.MenuRepository;
 import com.homework.homework_delivery_app.repository.RestaurantRepository;
+import com.homework.homework_delivery_app.validation.Validator;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,6 +24,9 @@ public class RestaurantService {
     }
     @Transactional
     public Restaurant registerRestaurant(RestaurantDto requestDto) {
+        // validation check
+        Validator.restaurantValidator(requestDto);
+
         Restaurant restaurant = new Restaurant(requestDto);
         restaurantRepository.save(restaurant);
         Menu menu = new Menu(restaurant);

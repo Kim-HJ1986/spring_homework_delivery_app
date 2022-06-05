@@ -42,6 +42,9 @@ public class OrderService {
 
 //        order.setRestaurant(restaurant);
         for(FoodOrderRequestDto foodDto : requestDto.getFoods()){
+            if(foodDto.getQuantity() < 1 || foodDto.getQuantity() > 100){
+                throw new IllegalArgumentException("주문 가능 수량의 범위는 1 ~ 100 입니다.");
+            }
             order.getFoodQuantity().put(foodDto.getId(), foodDto.getQuantity());
             Food food = foodRepository.findById(foodDto.getId())
                     .orElseThrow(() -> new IllegalArgumentException("해당 id는 존재하지 않습니다."));
@@ -51,6 +54,9 @@ public class OrderService {
 
             orderResponseDto.getFoods().add(foodOrderResponseDto);
             sum += foodOrderResponseDto.getPrice();
+        }
+        if(sum - orderResponseDto.getDeliveryFee() < restaurant.getMinOrderPrice()){
+            throw new IllegalArgumentException("최소 주문 가격을 넘겨 주세요!!");
         }
         orderResponseDto.setTotalPrice(sum);
         orderRepository.save(order);

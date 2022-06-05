@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -23,7 +24,7 @@ public class Menu {
     private Restaurant restaurant;
 
     @OneToMany
-    private List<Food> foods;
+    private List<Food> foods = new ArrayList<>();
 
     public Menu(Restaurant restaurant){
         this.restaurant = restaurant;

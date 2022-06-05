@@ -7,4 +7,5 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
     boolean existsByName(String name);
 
     Food findByName(String name);
+
 }
