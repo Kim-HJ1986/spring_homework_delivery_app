@@ -23,14 +23,11 @@ public class Menu {
     @OneToOne
     private Restaurant restaurant;
 
-    @OneToMany
+    @OneToMany(mappedBy = "menu")
     private List<Food> foods = new ArrayList<>();
 
     public Menu(Restaurant restaurant){
         this.restaurant = restaurant;
     }
 
-    public void registerFood(Food food) {
-        this.foods.add(food);
-    }
 }

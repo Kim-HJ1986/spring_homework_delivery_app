@@ -30,13 +30,14 @@ public class Restaurant {
     @Column(nullable = false)
     private int deliveryFee;
 
-    @JsonIgnore
-    @OneToOne
-    private Menu menu;
-
-    @JsonIgnore
-    @OneToMany
-    private List<Orders> orders;
+//    @JsonIgnore
+//    @OneToOne
+//    @JoinColumn(name = "MENU_ID")
+//    private Menu menu;
+//
+//    @JsonIgnore
+//    @OneToMany
+//    private List<Orders> orders;
 
     public Restaurant(RestaurantDto restaurantDto){
         this.name = restaurantDto.getName();

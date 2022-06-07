@@ -27,7 +27,12 @@ public class Orders {
     private Map<Long, Integer> foodQuantity;
 
     @ManyToMany
-    private List<Food> foods;
+    @JoinTable(
+            name = "ORDER_FOOD",
+            joinColumns = @JoinColumn(name = "ORDER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "FOOD_ID")
+    )
+    private List<Food> foods = new ArrayList<>();
 
     @ManyToOne
     private Restaurant restaurant;
@@ -35,6 +40,5 @@ public class Orders {
     public Orders(Restaurant restaurant){
         this.restaurant = restaurant;
         this.foodQuantity = new HashMap<>();
-        this.foods = new ArrayList<>();
     }
 }

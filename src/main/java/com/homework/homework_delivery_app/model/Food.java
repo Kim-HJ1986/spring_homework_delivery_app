@@ -31,15 +31,17 @@ public class Food {
     private int price;
 
     @JsonIgnore
-    @ManyToMany
-    private List<Menu> menus;
-
-    @JsonIgnore
-    @ManyToMany
-    private List<Orders> orders;
+    @ManyToOne
+//    @JoinColumn(name="MENU_ID") -> 안해줘도 ToOne이기 때문에 자동으로 FK 컬럼이 생성된다.
+    private Menu menu;
 
     public Food(FoodDto foodDto) {
         this.name = foodDto.getName();
         this.price = foodDto.getPrice();
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+        menu.getFoods().add(this);
     }
 }
