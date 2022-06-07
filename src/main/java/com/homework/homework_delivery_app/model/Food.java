@@ -2,14 +2,11 @@ package com.homework.homework_delivery_app.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.homework.homework_delivery_app.dto.FoodDto;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter

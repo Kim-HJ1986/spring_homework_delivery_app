@@ -3,7 +3,6 @@ package com.homework.homework_delivery_app.service;
 import com.homework.homework_delivery_app.dto.FoodDto;
 import com.homework.homework_delivery_app.model.Food;
 import com.homework.homework_delivery_app.model.Menu;
-import com.homework.homework_delivery_app.model.Restaurant;
 import com.homework.homework_delivery_app.repository.FoodRepository;
 import com.homework.homework_delivery_app.repository.MenuRepository;
 import com.homework.homework_delivery_app.repository.RestaurantRepository;
