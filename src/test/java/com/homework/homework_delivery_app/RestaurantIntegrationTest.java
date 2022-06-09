@@ -40,6 +40,16 @@ class RestaurantIntegrationTest {
         @Order(1)
         @DisplayName("음식점1 등록")
         void test1() throws JsonProcessingException {
+            // food 테스트에서 넣었던 음식점들도 넣어주기
+            ResponseEntity<RestaurantDto[]> response1 = restTemplate.getForEntity(
+                    "/restaurants",
+                    RestaurantDto[].class
+            );
+
+            for(int i = 0; i < response1.getBody().length; i ++){
+                registeredRestaurants.add(response1.getBody()[i]);
+            }
+
             // given
             RestaurantDto restaurantRequest = RestaurantDto.builder()
                     .id(null)

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RestaurantService {
@@ -24,6 +25,10 @@ public class RestaurantService {
     }
     @Transactional
     public Restaurant registerRestaurant(RestaurantDto requestDto) {
+//        Restaurant existRestaurant = restaurantRepository.finByName(requestDto.getName()).orElse(null);
+//        if(existRestaurant != null){
+//            return existRestaurant;
+//        }
         // validation check
         Validator.restaurantValidator(requestDto);
 
