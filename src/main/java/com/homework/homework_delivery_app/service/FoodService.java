@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FoodService {
@@ -35,9 +36,11 @@ public class FoodService {
         List<Food> foodList = new ArrayList<>();
         for (FoodDto foodDto : foodDtoList){
             // 음식 이름 중복 여부 체크
-            if(menu.getFoods().size() != 0){
-                List<Food> existFoods = menu.getFoods();
-                Validator.foodExistValidator(existFoods, foodDto);
+            Food existFood
+                    = foodRepository.findByNameAndMenuId(foodDto.getName(), menu.getId()).orElse(null);
+
+            if(existFood != null){
+                throw new IllegalArgumentException("중복된 음식은 저장할 수 없습니다.");
             }
 
             // 음식 관련 validation check
