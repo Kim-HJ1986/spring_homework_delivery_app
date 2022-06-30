@@ -39,7 +39,6 @@ jobs:
         docker tag spring-cicd rlafbf222/spring-cicd:${GITHUB_SHA::7}
         docker push rlafbf222/spring-cicd:${GITHUB_SHA::7}
     - name: Deploy
-      uses: Kim-HJ1986/spring_homework_delivery_app@master
       with:
         host: ec2-3-39-6-175
         username: ec2-user
