@@ -37,3 +37,5 @@ out/
 .vscode/
 
 application.properties
+spring-cicd
+spring-cicd.pub

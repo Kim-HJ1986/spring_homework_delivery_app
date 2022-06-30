@@ -38,3 +38,15 @@ jobs:
         docker login -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
         docker tag spring-cicd rlafbf222/spring-cicd:${GITHUB_SHA::7}
         docker push rlafbf222/spring-cicd:${GITHUB_SHA::7}
+    - name: Deploy
+      uses: rlafbf222/ssh-action@master
+      with:
+        host: ec2-3-39-6-175
+        username: ec2-user
+        key: ${{ secrets.PRIVATE_KEY }}
+        envs: GITHUB_SHA
+        script: |
+          docker pull rlafbf222/spring-cicd:${GITHUB_SHA::7}
+          docker tag rlafbf222/spring-cicd:${GITHUB_SHA::7} spring-cicd
+          docker stop server
+          docker run -d --rm --name server -p 80:8080 spring-cicd
