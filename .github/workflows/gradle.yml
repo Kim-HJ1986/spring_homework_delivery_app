@@ -33,7 +33,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Docker build
-      run:
+      run: |
         docker build -t spring-cicd .
         docker login -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
         docker tag spring-cicd rlafbf222/spring-cicd:${GITHUB_SHA::7}
